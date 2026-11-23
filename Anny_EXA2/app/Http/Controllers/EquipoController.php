@@ -14,4 +14,6 @@ class EquipoController extends Controller
 
         return view('equipo.index', compact('equipo'));
     }
+
+    
 }
