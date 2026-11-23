@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipo;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class EquipoController extends Controller
 {
@@ -14,6 +16,28 @@ class EquipoController extends Controller
 
         return view('equipo.index', compact('equipo'));
     }
+
+    public function create()
+    {
+        return view('equipo.create');
+    }
+
+    public function store(Request $request)
+    {
+        $dato= $request->validate([
+            'codigo' => 'required|string|max:100|unique:equipos,codigo',
+            'nombre' => 'required|string|max:100',
+            'marca' => 'required|string|max:80',
+            'fecha_adquisicion' => 'required|date|before_or_equal:today',
+            'estado' => 'required|in:disponible,asignado,mantenimiento',
+        ]);
+
+        Equipo::create($dato);
+
+        return redirect()->route('equipo.index') ->with('success', 'Equipo creado exitosamente.');
+    }
+
+    
 
     
 }

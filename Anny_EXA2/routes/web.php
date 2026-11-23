@@ -20,3 +20,10 @@ Route::get('/equipo', [EquipoController::class, 'index'])
 
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
+
+Route::get('/equipo/create', [EquipoController::class, 'create'])
+    ->middleware('auth')
+    ->name('equipo.create');
+Route::post('/equipo', [EquipoController::class, 'store'])
+    ->middleware('auth')
+    ->name('equipo.store');

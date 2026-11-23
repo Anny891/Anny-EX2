@@ -15,6 +15,7 @@
             <button type="submit" class="btn btn-primary">Cerrar sesion</button>
         </form>
 
+        <a href="{{ route('equipo.create') }}" class="btn btn-success">Crear nuevo equipo </a>
         <table border="3" class="table">
             <thead>
                 <tr>
@@ -22,10 +23,9 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Marca</th>
-                    <th>Fecha_adquisicion<th>
+                    <th>Fecha_adquisicion</th>
                     <th>Estado</th>
-                   
-                    <th>Acciones</th>
+                    <th>Acciones</th>           
                 </tr>
             </thead>
             <tbody>
