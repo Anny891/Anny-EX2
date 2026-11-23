@@ -37,6 +37,28 @@ class EquipoController extends Controller
         return redirect()->route('equipo.index') ->with('success', 'Equipo creado exitosamente.');
     }
 
+    public function edit($id)
+    {
+        $equipo = Equipo::findOrFail($id);
+        return view('equipo.edit', compact('equipo'));
+    }   
+
+    public function update(Request $request, $id)
+    {
+        $equipo = Equipo::findOrFail($id);
+
+        $dato= $request->validate([
+            'codigo' => 'required|string|max:100|unique:equipos,codigo,' . $equipo->id,
+            'nombre' => 'required|string|max:100',
+            'marca' => 'required|string|max:80',
+            'fecha_adquisicion' => 'required|date|before_or_equal:today',
+            'estado' => 'required|in:disponible,asignado,mantenimiento',
+        ]);
+        
+        $equipo->update($dato);
+
+        return redirect()->route('equipo.index')->with('success', 'Equipo actualizado exitosamente.');
+    }
     
 
     

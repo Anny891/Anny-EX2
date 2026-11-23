@@ -27,3 +27,13 @@ Route::get('/equipo/create', [EquipoController::class, 'create'])
 Route::post('/equipo', [EquipoController::class, 'store'])
     ->middleware('auth')
     ->name('equipo.store');
+
+Route::get('/equipo/{id}/edit', [EquipoController::class, 'edit'])
+    ->middleware('auth')
+    ->name('equipo.edit');
+Route::put('/equipo/{id}', [EquipoController::class, 'update'])
+    ->middleware('auth')
+    ->name('equipo.update');
+Route::delete('/equipo/{id}', [EquipoController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('equipo.destroy');

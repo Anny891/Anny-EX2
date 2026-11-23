@@ -16,6 +16,11 @@
         </form>
 
         <a href="{{ route('equipo.create') }}" class="btn btn-success">Crear nuevo equipo </a>
+        @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
         <table border="3" class="table">
             <thead>
                 <tr>
@@ -37,6 +42,13 @@
                         <td>{{ $equipos->marca }}</td>
                         <td>{{ $equipos->fecha_adquisicion }}</td>
                         <td>{{ $equipos->estado }}</td>
+                        <td>
+                            <a href="{{ route('equipo.edit', $equipos->id) }}" class="btn btn-primary">Editar</a>
+                            <form action="{{ route('equipo.destroy', $equipos->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                     </tr>
                 @empty
                     <tr>
