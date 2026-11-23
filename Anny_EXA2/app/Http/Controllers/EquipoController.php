@@ -54,10 +54,18 @@ class EquipoController extends Controller
             'fecha_adquisicion' => 'required|date|before_or_equal:today',
             'estado' => 'required|in:disponible,asignado,mantenimiento',
         ]);
-        
+
         $equipo->update($dato);
 
         return redirect()->route('equipo.index')->with('success', 'Equipo actualizado exitosamente.');
+    }
+
+    public function destroy($id)
+    {
+        $equipo = Equipo::findOrFail($id);
+        $equipo->delete();
+
+        return redirect()->route('equipo.index')->with('success', 'Equipo eliminado exitosamente.');
     }
     
 
