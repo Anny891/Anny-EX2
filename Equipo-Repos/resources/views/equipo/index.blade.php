@@ -15,6 +15,14 @@
         <button type="submit">Cerrar sesión</button>
     </form>
 
+    <p>
+    <a href="{{ route('equipo.create') }}">Registrar equipo</a>
+     </p>
+
+     @if (session('success'))
+            <p style="color: green">{{ session('success') }}</p>
+     @endif
+
     <br>
 
     <table border="1">

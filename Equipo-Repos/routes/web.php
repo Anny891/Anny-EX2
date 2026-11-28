@@ -22,3 +22,11 @@ Route::post('/login', [LoginController::class, 'login'])
 Route::post('/logout', [LoginController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+Route::get('/equipos/create', [EquipoController::class, 'create'])
+    ->middleware('auth')
+    ->name('equipo.create');
+
+Route::post('/equipos', [EquipoController::class, 'store'])
+    ->middleware('auth')
+    ->name('equipo.store');
