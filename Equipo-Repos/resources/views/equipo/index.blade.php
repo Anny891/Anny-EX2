@@ -46,6 +46,9 @@
                     <td>{{ $equipos->marca }}</td>
                     <td>{{ $equipos->fecha_adquisicion }}</td>
                     <td>{{ $equipos->estado }}</td>
+                    <td>
+                        <a href="{{ route('equipo.edit', $equipos->id) }}">Editar</a>
+                    </td>
                     
                 </tr>
             @empty

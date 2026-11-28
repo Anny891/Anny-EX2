@@ -61,6 +61,9 @@ class EquipoController extends Controller
     public function edit(string $id)
     {
         //
+         $equipo = Equipo::findOrFail($id);
+
+        return view('equipo.edit', compact('equipo'));
     }
 
     /**
@@ -69,7 +72,21 @@ class EquipoController extends Controller
     public function update(Request $request, string $id)
     {
         //
-    }
+         $equipo = Equipo::findOrFail($id);
+
+         $datos = $request->validate([
+            'codigo' => 'required|string|max:30|unique:equipos,codigo,' . $id,
+            'nombre' => 'required|string|max:100',
+            'marca' => 'required|string|max:80',
+            'fecha_adquisicion' => 'required|date|before:tomorrow',
+            'estado' => 'required|in:disponible,asignado,mantenimiento',
+        ]);
+
+        $equipo->update($datos);
+
+        return redirect()->route('equipo.index')
+          ->with('success', 'Equipo actualizado correctamente.');
+         }
 
     /**
      * Remove the specified resource from storage.
