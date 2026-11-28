@@ -94,5 +94,11 @@ class EquipoController extends Controller
     public function destroy(string $id)
     {
         //
+         $equipo = Equipo::findOrFail($id);
+
+        $equipo->delete();
+
+        return redirect()->route('equipo.index')
+            ->with('success', 'Equipo eliminado correctamente.');
     }
 }

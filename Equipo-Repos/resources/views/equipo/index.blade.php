@@ -48,6 +48,18 @@
                     <td>{{ $equipos->estado }}</td>
                     <td>
                         <a href="{{ route('equipo.edit', $equipos->id) }}">Editar</a>
+
+                        <form method="POST"
+                            action="{{ route('equipo.destroy', $equipos->id) }}"
+                            style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit"
+                                    onclick="return confirm('¿Desea eliminar este equipo?')">
+                                Eliminar
+                            </button>
+    </form>
                     </td>
                     
                 </tr>

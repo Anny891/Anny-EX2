@@ -38,3 +38,7 @@ Route::get('/equipos/{id}/edit', [EquipoController::class, 'edit'])
 Route::put('/equipos/{id}', [EquipoController::class, 'update'])
     ->middleware('auth')
     ->name('equipo.update');
+
+Route::delete('/equipos/{id}', [EquipoController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('equipo.destroy');
